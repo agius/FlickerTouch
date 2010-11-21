@@ -1,3 +1,7 @@
 %h1 Hello World
-- @photos.each do |photo|
-  %img{:src => "http://farm#{photo["farm"]}.static.flickr.com/#{photo["server"]}/#{photo["id"]}_#{photo["secret"]}_s.jpg"}
+#photos
+  - @photos.each do |photo|
+    - @photo = photo
+    = haml :small_photo
+%p
+  %a#more{:href => "/?page=#{@page + 1}"} More...

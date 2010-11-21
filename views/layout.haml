@@ -1,9 +1,17 @@
 !!!
 %head
   %meta{:name => "viewport", :content => "width=device-width,initial-scale=1,user-scalable=no"}
+  %link{:rel => 'stylesheet', :type => 'text/css', :href => '/reset.css', :media => 'only screen and (max-device-width: 480px)'}
   /[if IE]
     %link{:rel => 'stylesheet', :type => 'text/css', :href => '/mobile.css', :media => 'only screen and (max-device-width: 480px)'}
+  %script{:type => 'text/javascript', :src => 'http://code.jquery.com/jquery-1.4.4.min.js'}
+  - if request.path_info == '/'
+    %script{:type => 'text/javascript', :src => '/js/index.js'}
   
 %body
+  - if session['notice']
+    #notice
+      = session['notice']
+      - session['notice'] = ''
   #container
     = yield
