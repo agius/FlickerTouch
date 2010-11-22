@@ -10,14 +10,15 @@ var jQT = new $.jQTouch({
 });
 $(window).load(function(){
   var gallery_page = $('#more').attr('data-page')
+  view_img = function(e){
+    $('#picture').html('<img src="' + $(e.target).attr('data-photo') + '" />')
+    jQT.goTo('#view')
+  }
   $('#more_link').click(function(e){
     $.get('/?page=' + (gallery_page + 1), function(data) {
-      $('#photos').append(data)
+      $(data).each(function(index, elem){ $(elem).click(view_img); $('#photos').append(elem)})
       gallery_page++
     })
   })
-  $('.galleryimg').click(function(e){
-    $('#picture').html('<img src="' + $(e.target).attr('data-photo') + '" />')
-    jQT.goTo('#view')
-  })
+  $('.galleryimg').click(view_img)
 });
