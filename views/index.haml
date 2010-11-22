@@ -1,7 +1,6 @@
-%h1 Hello World
 #photos
   - @photos.each do |photo|
     - @photo = photo
     = haml :small_photo
-%p
-  %a#more{:href => "/?page=#{@page + 1}"} More...
+%ul.edgetoedge
+  %li#more_link.arrow{:"data-page" => @page} More...

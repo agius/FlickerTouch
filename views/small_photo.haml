@@ -1,2 +1,1 @@
-%a{:href => "/photo?photo[farm]=#{@photo["farm"]}&photo[server]=#{@photo["server"]}&photo[id]=#{@photo["id"]}&photo[secret]=#{@photo["secret"]}"}
-  %img.smallimg{:src => "http://farm#{@photo["farm"]}.static.flickr.com/#{@photo["server"]}/#{@photo["id"]}_#{@photo["secret"]}_s.jpg"}
+%img.galleryimg{:src => "http://farm#{@photo["farm"]}.static.flickr.com/#{@photo["server"]}/#{@photo["id"]}_#{@photo["secret"]}_s.jpg", :"data-photo" => "http://farm#{@photo["farm"]}.static.flickr.com/#{@photo["server"]}/#{@photo["id"]}_#{@photo["secret"]}.jpg"}
