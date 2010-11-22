@@ -5,7 +5,11 @@ require 'httparty'
 
 helpers do
   def flickr(method, options = {})
-    @config = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + '/config.yaml')
+    if ENV['API_KEY']
+      @config = {"api_key" => ENV['API_KEY']}
+    else
+      @config = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + '/config.yaml')
+    end
     HTTParty.get('http://api.flickr.com/services/rest/', :query => {:api_key => @config["api_key"], :method => method}.merge(options))
   end
 end
