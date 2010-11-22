@@ -33,3 +33,11 @@ get '/photo' do
   @photo = params[:photo]
   haml :photo, :layout => !request.xhr?
 end
+
+get '/search' do
+  redirect '/' unless params[:q]
+  @page = params[:page] ? params[:page].to_i : 1
+  @photos = flickr('flickr.photos.search', :text => params[:q], :per_page => 25, :page => @page)
+  @photos = @photos["rsp"]["photos"]["photo"] if @photos
+  @photos.collect{|p| @photo = p; haml(:small_photo, :layout => false)}.join('')
+end

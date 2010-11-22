@@ -1,6 +1,38 @@
-#photos
-  - @photos.each do |photo|
-    - @photo = photo
-    = haml :small_photo
-%ul.edgetoedge
-  %li#more_link.arrow{:"data-page" => @page} More...
+!!!
+%head
+  %title FlickerTouch
+  %link{:rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/jqtouch.css', :media => 'screen'}
+  %link{:rel => 'stylesheet', :type => 'text/css', :href => '/themes/jqt/theme.css', :media => 'screen'}
+  %link{:rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/mobile.css', :media => 'screen'}
+  %script{:type => 'text/javascript', :src => 'http://code.jquery.com/jquery-1.4.4.js'}
+  %script{:type => 'text/javascript', :src => '/js/jqtouch.js'}
+  %script{:type => 'text/javascript', :src => '/js/index.js'}
+  
+%body
+  #gallery
+    .toolbar
+      %h1 Gallery
+      %span#search_button.button Search
+    %ul.edgetoedge
+      %li#photos
+        - @photos.each do |photo|
+          - @photo = photo
+          = haml :small_photo
+      %li#more_link.arrow{:"data-page" => @page} More...
+  #view
+    .toolbar
+      %a.back Back
+      %h1 Image
+    %ul.edgetoedge
+      %li#picture Loading...
+  #search
+    .toolbar
+      %a.back Back
+      %h1 Search
+    %ul.edgetoedge
+      %li
+        %form#search_form
+          %input#search_box{:type => :search, :placeholder => 'Search photos'}
+          %input{:type => :submit, :value => 'Search'}
+      %li#results Results Here
+      %li#more_results More...
