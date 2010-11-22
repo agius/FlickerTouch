@@ -13,11 +13,11 @@
     .toolbar
       %h1 Gallery
       %span#search_button.button Search
+    #photos
+      - @photos.each do |photo|
+        - @photo = photo
+        = haml :small_photo
     %ul.edgetoedge
-      %li#photos
-        - @photos.each do |photo|
-          - @photo = photo
-          = haml :small_photo
       %li#more_link.arrow{:"data-page" => @page} More...
   #view
     .toolbar
@@ -29,10 +29,10 @@
     .toolbar
       %a.back Back
       %h1 Search
-    %ul.edgetoedge
-      %li
-        %form#search_form
-          %input#search_box{:type => :search, :placeholder => 'Search photos'}
-          %input{:type => :submit, :value => 'Search'}
-      %li#results Results Here
-      %li#more_results More...
+    %form#search_form{:action => '/', :method => 'post'}
+      %ul
+        %li
+          %input#search_box{:type => :search, :placeholder => 'Search photos', :size => 25}
+    #results
+    %ul
+      %li#more_results Search

@@ -23,18 +23,14 @@ $(window).load(function(){
   $('.galleryimg').click(view_img)
   $('#search_button').click(function(e){jQT.goTo('#search')})
   
-  var search_page = 1
-  $('#search_form').submit(function(e){
-    e.preventDefault()
-    $.get('/search?q=' + $('#search_box').val(), function(data){
-      $('#results').empty()
-      $(data).each(function(index, elem){ $(elem).click(view_img); $('#results').append(elem)})
-    })
-  })
+  var search_page = 0
   $('#more_results').click(function(e){
     search_page++
     $.get('/search?q=' + $('#search_box').val() + '&page=' + search_page, function(data){
       $(data).each(function(index, elem){ $(elem).click(view_img); $('#results').append(elem)})
     })
+    if( $('#more_results').html() == 'Search'){
+      $('#more_results').html('More Results')
+    }
   })
 });
